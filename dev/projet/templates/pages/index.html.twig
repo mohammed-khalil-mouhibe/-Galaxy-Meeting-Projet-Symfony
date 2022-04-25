@@ -1,0 +1,416 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Galaxy Meeting{% endblock %}
+{% block head %}
+
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+
+{% endblock %}
+
+
+{% block body %}
+
+
+    <style>
+
+        #div_text{
+
+            width: 75%;
+            border-radius: 23px;
+            border: solid;
+            /* margin-right: -19%; */
+            margin-left: 12%;
+            text-align: center;
+            /* font-size: 15px; */
+            font-family: emoji }
+
+       body{
+            background: url("/img/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .slider {
+            background: #333;
+            height: 30px;
+            width: 100%;
+        }
+
+        .navbar{
+            background: url("/img/header.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #div_svg{
+            background: url("/img/galaxy_bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #logo {
+
+            width: 50px;
+            height: 70px;
+        }
+
+        .navbar-toggler {
+            margin-top: 15px;
+        }
+        #label1{
+            font-size: 22px;
+            font-family: emoji;
+            /* background-color: #9c79bd; */
+            color: black;
+            margin-left: 5%;
+            /* border: solid 2px; */
+            /* border-color: black; */
+            border-radius: 0px;
+        }
+        .btn{
+
+
+            color: #fa6900;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.5s;
+            letter-spacing: 2px;
+
+
+        }
+
+        .btn{
+            background: #714B7C;
+            color: #fff;
+            margin-left : 10px;
+            margin-right : 10px;
+            box-shadow: 0 0 5px #714B7C,
+            0 0 25px #714B7C,
+            0 0 50px #714B7C,
+            0 0 200px #714B7C;
+            -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+        }
+        .btn:hover{
+            background: white;
+            color: black;
+        }
+    #h1_text{
+        font-family: emoji;
+        font-size: 29px;
+    }
+        #paper {
+            color:#FFF;
+            font-size:20px;
+        }
+        #margin {
+            margin-left:12px;
+            margin-bottom:20px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        #text {
+            height: 438px;
+            width: 850px;
+            overflow: hidden;
+            background-color: #FFF;
+            color: #222;
+            font-family: Courier, monospace;
+            font-weight: normal;
+            font-size: 24px;
+            resize: none;
+            line-height: 40px;
+            padding-left: 100px;
+            padding-right: 93px;
+            padding-top: 11px;
+            padding-bottom: 34px;
+            background-image: url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+            background-repeat: repeat-y, repeat;
+            -webkit-border-radius: 12px;
+            border-radius: 12px;
+            -webkit-box-shadow: 0px 2px 14px #000;
+            box-shadow: 0px 2px 14px #000;
+            border-top: 1px solid #FFF;
+            border-bottom: 1px solid #FFF;
+            margin-left: -12%;
+        }
+        #title {
+            background-color:transparent;
+            border-bottom:3px solid #FFF;
+            color:#FFF;
+            font-size:20px;
+            font-family:Courier, monospace;
+            height:28px;
+            font-weight:bold;
+            width:220px;
+        }
+        #wrapper {
+            width:700px;
+            height:auto;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:24px;
+            margin-bottom:100px;
+        }
+    </style>
+
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div  id="nav-left">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a style="position: relative;left: 25%;bottom: -22px;" class="btn btn-secondary btn-rounded" href="#">Constelations</a>
+                </li>
+                <li class="nav-item">
+                    <a style="left: 130%;position: relative;top: -16px;" class="btn btn-secondary btn-rounded" href="{{ path ('app_twins') }}">Votre Ame Soeur</a>
+                </li>
+            </ul>
+        </div>
+
+        <a id="logologo" class="navbar-brand mx-auto" href="#"><div id="logo">
+                <img style=" position: relative;left: -58px;" src="/img/logogalaxy.png" width="200" height="200">
+            </div></a>
+
+        <div>
+            <ul class="nav navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if is_granted('ROLE_ADMIN')  %}
+                <li class="nav-item">
+                    <a style="position: relative;left: -231px;top: 24px;" class="btn btn-secondary btn-rounded" href="{{ path('app_constelation_index') }}">Gestion administrative</a>
+
+                </li>
+                        <li class="nav-item">
+                            <a style="position: relative;top: -14px;left: 57px;"class="btn btn-secondary btn-rounded" href= "{{ path ('app_logout')}}">Se déconnecter</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a style="position: relative;top: 3px;left: -24px;"class="btn btn-secondary btn-rounded" href= "{{ path ('app_logout')}}">Se déconnecter</a>
+                        </li>
+                    {% endif %}
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a style="position: relative;left: -231px;top: 24px;" class="btn btn-secondary btn-rounded" href="{{ path('app_register') }}">Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="position: relative;top: -15px;left: -18px;" class="btn btn-secondary btn-rounded" href= "{{ path ('app_login')}}">Connexion</a>
+                        </li>
+
+                {% endif %}
+
+            </ul>
+        </div>
+
+    </nav>
+<div class="slider"></div>
+
+
+
+    <div id="div_body">
+    <div id="div_svg" style="    border: solid;   width: 75%; margin-left: 12%;  margin-top: 34px;height: 433px;border-radius: 28px;">
+        <svg width = "5000" height = "2000"  style="width: 106%;height: 385px;position: relative;left: -62px;">
+            <defs>
+                <pattern id="image" x="0" y="0" patternUnits="userSpaceOnUse" height="5" width="5">
+                    <image x="0" y="0" xlink:href="https://i.ibb.co/JtRQkFw/Png-Item-38601.png"></image>
+                </pattern>
+                <clipPath id="image-clip">
+                    <use xlink:href="#image"/>
+                </clipPath>
+            </defs>
+            <text x="80" y="30" style="fill: white" >CARTE DU CIEL © GALAXY MEETING 2022   </text>
+            {% for position in positions %}
+                {% if position.magnitude >=3 %}
+                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=" {% for etoile in etoiles%} {% if etoile.idEtoile == position.idEtoile%} {{ etoile.nom }}  {% endif%} {% endfor%}  "> <g clip-path="url(image-clip)">
+                            <image x="{{position.longitude}}" y="{{ position.lattitude}}" xlink:href="https://i.ibb.co/JtRQkFw/Png-Item-38601.png" width="12px" height="12px" preserveAspectRatio="xMidYMid slice"/></g></a>
+                {% elseif position.magnitude >=2 and position.magnitude < 3 %}
+                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=" {% for etoile in etoiles%} {% if etoile.idEtoile == position.idEtoile%} {{ etoile.nom }}  {% endif%} {% endfor%}  "> <g clip-path="url(image-clip)">
+                            <image x="{{position.longitude}}" y="{{ position.lattitude}}" xlink:href="https://i.ibb.co/JtRQkFw/Png-Item-38601.png" width="17px" height="17px" preserveAspectRatio="xMidYMid slice"/></g></a>
+                {% else %}
+                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title=" {% for etoile in etoiles%} {% if etoile.idEtoile == position.idEtoile%} {{ etoile.nom }}  {% endif%} {% endfor%}  "> <g clip-path="url(image-clip)">
+                            <image x="{{position.longitude}}" y="{{ position.lattitude}}" xlink:href="https://i.ibb.co/JtRQkFw/Png-Item-38601.png" width="22px" height="22px" preserveAspectRatio="xMidYMid slice"/></g></a>
+                    <!--    <text  x = '{{ position.longitude}}' y = '{{ position.lattitude}}'  > *</text> -->
+                {% endif %}
+            {% endfor %}
+
+        </svg>
+    </div>
+
+    </div >
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div id="wrapper">
+
+        <div id="paper" >
+
+            <div class="btn btn-primary btn-lg btn-block" style="border: none ; box-shadow: none; -webkit-box-reflect: unset;"> A propos de vous :</div>
+            <div id="text" name="text"  >
+                {% for constelation in constelations %}
+                    {% if app.user.mois >= constelation.moisDebut and app.user.mois < constelation.moisFin  %}
+                        <h1 id="h1_text"> Bonjour  {{ app.user.username}} d'aprés votre date de naissance vous etes sous la constelation <b>{{ constelation.nom }} </b>
+                            qui a comme étoile principale  <b>{{ constelation.etoilePrincipale }} </b>  , votre Constelation se produit en  <b> {{ constelation.Saison }}</b>  plus exactement entre
+                            {{ constelation.moisDebut }} - {{ constelation.jourDebut }} et {{ constelation.moisFin }} - {{ constelation.jourFin }}, et géneralement votre constelation montre que  <b> {{ constelation.prediction }}</b> <br>
+                            Si vous voulez rencontrer votre Ame Soeur vous pouvez <a href="{{ path ('app_twins') }}">Cliquer ici</a></h1>
+
+                    {% endif %}
+
+                {% endfor %}
+               </div>
+            <br>
+        </div>
+    </div>
+
+        {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted">
+        <!-- Section: Social media -->
+        <section
+                class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+        >
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Nous Contacter</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="#" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Galaxy Meeting
+                        </h6>
+                        <p>
+                            Application déstinée aux utilisateurs interessés par l'astrologie ,
+                            Ici vous pouvez trouver votre "TWIN" et enrichir votre culture générale
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Fondateurs
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Mouhibe Mohammed Khaalil</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Tahri Joutey El-Ghali</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Mousssaoui Anas</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Rouissi Meriem</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            liens Utils
+                        </h6>
+                        <p>
+                            <a href="https://www.datastro.eu/explore/dataset/88-constellations/table/?disjunctive.season_saison&disjunctive.iau_code&disjunctive.dec_declinaison&disjunctive.test&disjunctive.constellation_area_in_of_the_celestial_sphere_etendue_de_la_constellation_en_de_la_sphere_celeste&disjunctive.constellation_zone_celestial_equator_zone_de_la_constellation_equateur_celeste&disjunctive.constellation_zone_milky_way_zone_de_la_constellation_voie_lactee&disjunctive.quad_repere_de_l_hemisphere_et_du_quadrant&disjunctive.name_origin_origine_de_l_apellation&sort=iau_code" class="text-reset">Base de données</a>
+                        </p>
+                        <p>
+                            <a href="https://bootsnipp.com/snippets/vl4R7" class="text-reset">Style</a>
+                        </p>
+                        <p>
+                            <a href="https://tinder.com/fr" class="text-reset">Idée</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Help</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Contact
+                        </h6>
+                        <p><i class="fas fa-home me-3"></i> Fez , Morocco</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            lferda@gmail.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2022 Copyright:
+            <a class="text-reset fw-bold" href="#">Univérsité d'Orléans</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+
+    </script>
+
+
+    <!-- Footer -->
+{% endblock %}

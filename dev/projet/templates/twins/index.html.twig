@@ -1,0 +1,249 @@
+{% extends 'base.html.twig' %}
+{% block head %}
+<title>Login Page</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+{% endblock %}
+
+
+{% block body  %}
+    <style>
+
+        body{
+            background: url("/img/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .slider {
+            background: #333;
+            height: 30px;
+            width: 100%;
+        }
+
+        .navbar{
+            background: url("/img/header.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #div_svg{
+            background: url("/img/galaxy_bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #logo {
+
+            width: 50px;
+            height: 70px;
+        }
+
+        .navbar-toggler {
+            margin-top: 15px;
+        }
+        #label1{
+            font-size: 22px;
+            font-family: emoji;
+            /* background-color: #9c79bd; */
+            color: black;
+            margin-left: 5%;
+            /* border: solid 2px; */
+            /* border-color: black; */
+            border-radius: 0px;
+        }
+        .btn{
+
+
+            color: #fa6900;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.5s;
+            letter-spacing: 2px;
+
+
+        }
+
+        .btn{
+            background: #714B7C;
+            color: #fff;
+            margin-left : 10px;
+            margin-right : 10px;
+            box-shadow: 0 0 5px #714B7C,
+            0 0 25px #714B7C,
+            0 0 50px #714B7C,
+            0 0 200px #714B7C;
+            -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+        }
+        .btn:hover{
+            background: white;
+            color: black;
+        }
+        #h1_text{
+            font-family: emoji;
+            font-size: 29px;
+        }
+        #paper {
+            color:#FFF;
+            font-size:20px;
+        }
+        #margin {
+            margin-left:12px;
+            margin-bottom:20px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        #text {
+            height: 438px;
+            width: 850px;
+            overflow: hidden;
+            background-color: #FFF;
+            color: #222;
+            font-family: Courier, monospace;
+            font-weight: normal;
+            font-size: 24px;
+            resize: none;
+            line-height: 40px;
+            padding-left: 100px;
+            padding-right: 93px;
+            padding-top: 11px;
+            padding-bottom: 34px;
+            background-image: url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+            background-repeat: repeat-y, repeat;
+            -webkit-border-radius: 12px;
+            border-radius: 12px;
+            -webkit-box-shadow: 0px 2px 14px #000;
+            box-shadow: 0px 2px 14px #000;
+            border-top: 1px solid #FFF;
+            border-bottom: 1px solid #FFF;
+            margin-left: -12%;
+        }
+        #title {
+            background-color:transparent;
+            border-bottom:3px solid #FFF;
+            color:#FFF;
+            font-size:20px;
+            font-family:Courier, monospace;
+            height:28px;
+            font-weight:bold;
+            width:220px;
+        }
+        #wrapper {
+            width:700px;
+            height:auto;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:24px;
+            margin-bottom:100px;
+        }
+        .card {
+            margin-top: 104px;
+
+            box-shadow: 0 0 5px #714B7C,
+            0 0 25px #714B7C,
+            0 0 50px #714B7C,
+            0 0 200px #714B7C;
+            -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+            border: solid 2px black;
+            border-radius: 10px;
+            margin-left: 4%;
+            display: inline-block;
+            width: 20%;
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+            transition: 0.3s;
+            /* width: 40%; */
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+        #image{
+            height: 353px;
+            width: 100%;
+        }
+
+
+    </style>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div  id="nav-left">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a style="position: relative;left: 25%;bottom: -22px;" class="btn btn-secondary btn-rounded" href="{{ path ('app_const') }}">Constelations</a>
+                </li>
+                <li class="nav-item">
+                    <a style="left: 130%;position: relative;top: -16px;" class="btn btn-secondary btn-rounded" href="{{ path ('app_twins') }}">Votre Ame Soeur</a>
+                </li>
+            </ul>
+        </div>
+
+        <a id="logologo" class="navbar-brand mx-auto" href=" {{ path('app_pages') }}"><div id="logo">
+                <img style=" position: relative;left: -58px;" src="/img/logogalaxy.png" width="200" height="200">
+            </div></a>
+
+        <div>
+            <ul class="nav navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if is_granted('ROLE_ADMIN')  %}
+                        <li class="nav-item">
+                            <a style="position: relative;left: -231px;top: 24px;" class="btn btn-secondary btn-rounded" href="{{ path('app_constelation_index') }}">Gestion administrative</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a style="position: relative;top: -14px;left: 57px;"class="btn btn-secondary btn-rounded" href= "{{ path ('app_logout')}}">Se déconnecter</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a style="position: relative;top: 3px;left: -24px;"class="btn btn-secondary btn-rounded" href= "{{ path ('app_logout')}}">Se déconnecter</a>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="nav-item">
+                        <a style="position: relative;left: -232px;top: 24px;" class="btn btn-secondary btn-rounded" href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="position: relative;top: -15px;left: -37px;" class="btn btn-secondary btn-rounded" href= "{{ path ('app_login')}}">Connexion</a>
+                    </li>
+
+                {% endif %}
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="slider"></div>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+{% for user in users %}
+
+    {% if app.user.mois == user.mois  %}
+        <div class="card">
+            <img id="image" src="/img/{{ user.image }}" >
+            <div class="container">
+                <h4 style="text-align: center"><b> <i class="fas fa-user"></i> {{ user.nomPrenom }}</b></h4>
+                <p> <i class="fas fa-phone"></i> {{ user.numTele }}</p>
+                <p> <i class="fas fa-venus-mars"></i> {{ user.genre }}</p>
+                <p> <i class="fas fa-calendar"></i> {{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }} </p>
+            </div>
+        </div>
+    {% endif %}
+
+    {% endfor %}
+</ul>
+
+        {% else %}
+        <h3 class="alert-primary">Connectez vous pour pouvoir trouver les personnes qui ont la meme constelation que vous</h3>
+
+            <!------ Include the above in your HEAD tag ---------->
+
+
+
+
+    {% endif %}
+
+
+{% endblock %}

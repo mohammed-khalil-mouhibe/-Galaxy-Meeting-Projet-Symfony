@@ -1,0 +1,229 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Constelations{% endblock %}
+
+{% block body %}
+<style>
+    #wrapper {
+        width: 580px;
+        margin: 0 auto;
+        overflow: auto;
+        background-color: #1f174a;
+        border-radius: 1px;
+        box-shadow: 5px 5px 20px;
+        display: inline-block;
+        margin-left: 5%;
+    }
+
+
+    #my-icon{
+        margin: 45px;
+        position: relative;
+        float: left;
+    }
+
+    #my-icon img{
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+    }
+
+    #my-info{
+        margin: 50px;
+        font-family: Sans-Serif;
+        color: white;
+        line-height: 150%;
+    }
+
+    #my-info h1{
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .btn{
+
+
+        color: #fa6900;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: 0.5s;
+        letter-spacing: 2px;
+
+
+    }
+
+    .btn{
+        background: #714B7C;
+        color: #fff;
+        margin-left : 10px;
+        margin-right : 10px;
+        box-shadow: 0 0 5px #714B7C,
+        0 0 25px #714B7C,
+        0 0 50px #714B7C,
+        0 0 200px #714B7C;
+        -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+    }
+    .btn:hover{
+        background: white;
+        color: black;
+    }
+    #h1_text{
+        font-family: emoji;
+        font-size: 29px;
+    }
+    #see-more{
+        width: 200px;
+        height: 50px;
+        overflow: auto;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+
+        background-color: black;
+        border-radius: 20px;
+        text-transform: uppercase;
+
+        text-align: center;
+        vertical-align: middle;
+        line-height: 50px;
+
+        transition: 0.2s ease-out;
+    }
+
+    #see-more:hover{
+        color: black;
+        background-color: white;
+    }
+
+    .info-card{
+        background-color: #7E8AA2;
+        font-family: Sans-Serif;
+        color: white;
+        line-height: 150%;
+    }
+
+    ul{
+        margin: 0;
+        padding: 0;
+    }
+    ul#nav-links li{
+        text-decoration: none;
+        text-transform: uppercase;
+        list-style-type: none;
+        text-align: center;
+        verticle-align: middle;
+        line-height: 5em;
+        display: block;
+        height: 5em;
+        border-bottom: 2px solid #263248;
+        border-top: 2px solid #AFBFE0;
+        transition: 0.2s ease-out;
+    }
+
+    ul#nav-links li:hover{
+        background-color: #263248;
+        border-top: 2px solid #263248;
+    }
+
+    #div_text{
+
+        width: 75%;
+        border-radius: 23px;
+        border: solid;
+        /* margin-right: -19%; */
+        margin-left: 12%;
+        text-align: center;
+        /* font-size: 15px; */
+        font-family: emoji }
+
+    body{
+        background: url("/img/bg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .slider {
+        background: #333;
+        height: 30px;
+        width: 100%;
+    }
+
+    .navbar{
+        background: url("/img/header.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #logo {
+
+        width: 50px;
+        height: 70px;
+    }
+
+</style>
+
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div  id="nav-left">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a style="position: relative;left: 25%;bottom: -22px;" class="btn btn-secondary btn-rounded" href="{{ path('app_pages') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a style="left: 130%;position: relative;top: -16px;" class="btn btn-secondary btn-rounded" href="{{ path ('app_twins') }}">Votre Ame Soeur</a>
+                </li>
+            </ul>
+        </div>
+
+        <a id="logologo" class="navbar-brand mx-auto" href="#"><div id="logo">
+                <img style=" position: relative;left: -58px;" src="/img/logogalaxy.png" width="200" height="200">
+            </div></a>
+
+        <div>
+            <ul class="nav navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if is_granted('ROLE_ADMIN')  %}
+                        <li class="nav-item">
+                            <a style="position: relative;left: -231px;top: 24px;" class="btn btn-secondary btn-rounded" href="{{ path('app_constelation_index') }}">Gestion administrative</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a style="position: relative;top: -14px;left: 57px;"class="btn btn-secondary btn-rounded" href= "{{ path ('app_logout')}}">Se déconnecter</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a style="position: relative;top: 3px;left: -24px;"class="btn btn-secondary btn-rounded" href= "{{ path ('app_logout')}}">Se déconnecter</a>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="nav-item">
+                        <a style="position: relative;left: -231px;top: 24px;" class="btn btn-secondary btn-rounded" href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="position: relative;top: -15px;left: 62px;" class="btn btn-secondary btn-rounded" href= "{{ path ('app_login')}}">Connexion</a>
+                    </li>
+
+                {% endif %}
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="slider"></div>
+
+    {% for c in constelations %}
+    <div id="wrapper">
+        <div id="my-icon">
+            <img src="{{ c.image }}"></img>
+        </div>
+        <div id="my-info">
+            <p>Nom : {{ c.nom }}</p>
+            <p>Saison : {{ c.saison }}</p>
+            <p>Etoile Principale : {{ c.etoilePrincipale }}</p>
+            <p>Code Constelation {{ c.codeConstelation }}</p>
+
+        </div>
+
+    </div>
+    {% endfor %}
+
+
+{% endblock %}

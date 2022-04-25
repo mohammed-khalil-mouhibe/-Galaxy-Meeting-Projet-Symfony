@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Position{% endblock %}
+
+{% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <h1>Position</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ position.id }}</td>
+            </tr>
+            <tr>
+                <th>IdEtoile</th>
+                <td>{{ position.idEtoile }}</td>
+            </tr>
+            <tr>
+                <th>RaHour</th>
+                <td>{{ position.raHour }}</td>
+            </tr>
+            <tr>
+                <th>RaMin</th>
+                <td>{{ position.raMin }}</td>
+            </tr>
+            <tr>
+                <th>RaSec</th>
+                <td>{{ position.raSec }}</td>
+            </tr>
+            <tr>
+                <th>DecDeg</th>
+                <td>{{ position.decDeg }}</td>
+            </tr>
+            <tr>
+                <th>DecMin</th>
+                <td>{{ position.decMin }}</td>
+            </tr>
+            <tr>
+                <th>DecSec</th>
+                <td>{{ position.decSec }}</td>
+            </tr>
+            <tr>
+                <th>Magnitude</th>
+                <td>{{ position.magnitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ position.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Lattitude</th>
+                <td>{{ position.lattitude }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_position_index') }}">back to list</a>
+
+    <a href="{{ path('app_position_edit', {'id': position.id}) }}">edit</a>
+
+    {{ include('position/_delete_form.html.twig') }}
+    {% else %}
+        <h1>Vous n'etes pas un administrateur</h1>
+        <button style=" margin-bottom: 6px;"  type="button" class="btn btn-secondary">
+            <a style="color:#f8f5f5;text-align: center"  href="{{ path('app_pages') }}">Accueil</a></button>
+
+    {% endif %}
+    {% else %}
+        <h1>Vous n'etes pas connecte</h1>
+        <button style=" margin-bottom: 6px;"  type="button" class="btn btn-secondary">
+            <a style="color:#f8f5f5;text-align: center"  href="{{ path('app_pages') }}">Accueil</a></button>
+    {% endif %}
+{% endblock %}

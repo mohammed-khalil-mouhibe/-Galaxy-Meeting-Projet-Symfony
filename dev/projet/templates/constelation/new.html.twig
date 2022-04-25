@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Constelation{% endblock %}
+
+{% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <h1>Ajoute une  Constelation</h1>
+
+    {{ include('constelation/_form.html.twig') }}
+
+    <a href="{{ path('app_constelation_index') }}">back to list</a>
+    {% else %}
+        <h1>Vous n'etes pas un administrateur</h1>
+        <button style=" margin-bottom: 6px;"  type="button" class="btn btn-secondary">
+            <a style="color:#f8f5f5;text-align: center"  href="{{ path('app_pages') }}">Accueil</a></button>
+
+    {% endif %}
+    {% else %}
+        <h1>Vous n'etes pas connecte</h1>
+        <button style=" margin-bottom: 6px;"  type="button" class="btn btn-secondary">
+            <a style="color:#f8f5f5;text-align: center"  href="{{ path('app_pages') }}">Accueil</a></button>
+    {% endif %}
+{% endblock %}

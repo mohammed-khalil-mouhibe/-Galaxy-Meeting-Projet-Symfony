@@ -1,0 +1,39 @@
+Dans notre application on vise à créer une plateforme qui contient la map de la galaxie avec les
+étoiles et les constellations qu’elles constituent avec la possibilité de cliquer sur une étoile et avoir
+toutes les informations de cette dernière ou bien cliquer sur une constellation et avoir toutes les
+étoiles constituant cette dernière et même des information supplémentaire de cette constellation,
+cependant on va même donner la possibilité de se connecter et donner votre date de naissance pour
+avoir à quelle constellation vous êtes attribué , les informations de cette constellation , les étoiles …..
+Et même avoir toutes les personnes qui sont compatibles avec vous et pouvoir les contacter d’où vient l’idée du nom du projet Galaxy Meeting
+
+Partie 1 : Base de données
+Vous pouvez trouver la conception et les méthodes utilisées(PL/SQL) pour créer notre base de donnnées avec des donnés
+réelles et la conception de notre base de données dans le fichier (Création de la base de données\Rapport)
+
+Partie 2 : Réalisation du projet (Symfony)
+-Installation : 
+	docker-compose build
+	docker-compose up -d
+	docker exec -ti web bash
+	cd projet
+	symfony server:start --no-tls --d
+Puis vous pouvez Ouvrir avec Chrome http://localhost:5000/pages (Page d'accueil)
+
+-Framework utilisé:
+	Symfony avec base de données PostgresSql
+
+-Explication:
+	Utilisateur Normal :
+	Vous pouvez créer votre compte en cliquant sur Inscription ou bien accédez à http://localhost:5000/register
+	Vous pouvez aussi vous connecter avec (username :khalil / password:khalill)
+	Une fois vous etes connecté vous aurez la possibilité de voir les utilisateurs qui sont compatibles avec vous selon votre date de naissance (Constelation)
+	Vous aurez la possibilité de consulter toutes les constelation et avoir des indormations générale sur ces derniéres
+	Une Map de la galaxy sera affichée pour vous contenant les étoiles et vous pouvez avoir le nom de chaque étoile en mettant la souris sur cette étoile
+	
+	Admin:
+	Vous pouver vous connecter en tant qu'admin avec (username :ghali / password:useruser)
+	Et donc Vous aurez la possibilité de gérer la base de données (Etoile,Constelation,Utilisateurs et Position)
+	Et vous aurez également la possibilité d'utiliser l'application comme un utilisateur normal
+
+Mohammed Khalil Mouhibe
+

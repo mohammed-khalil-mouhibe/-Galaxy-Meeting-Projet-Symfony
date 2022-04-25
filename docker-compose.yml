@@ -1,0 +1,42 @@
+version: '3'
+services:
+  php-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        #GOODUSER: jmc
+        #UID: 501
+        MAIL: "jean-michel.couvreur@univ-orleans.fr"
+        NOM: "Jean-MichelCouvreur"
+    depends_on:
+    - "db"
+    image: symfony
+    container_name: web_c
+    volumes:
+    - ./dev:/var/www/html
+    ports:
+    - "5000:8000"
+    environment:
+      PHP_IDE_CONFIG: serverName=toto
+  db:
+    container_name: dbb
+    restart: always
+    image: postgres:12-alpine
+    ports:
+    - "15432:5432"
+    environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: secret
+        POSTGRES_DB: mydb
+        PGDATA: /var/lib/postgresql/data/some_name/
+    volumes:
+    - ./database:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 18080:8080
+volumes:
+  database:
+  dev:
